@@ -115,7 +115,7 @@ const data = [
 const articles = document.querySelector(".articles");
 data.forEach(content => {
   articles.appendChild(
-    createFunction(
+    creator(
       content.title,
       content.date,
       content.firstParagraph,
@@ -125,16 +125,10 @@ data.forEach(content => {
   );
 });
 
-function createFunction(
-  title,
-  date,
-  firstParagraph,
-  secondParagraph,
-  thirdParagraph
-) {
+function creator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
   const article = document.createElement("div");
-  const artTitle = document.createElement("h2");
-  const artDate = document.createElement("p");
+  const theTitle = document.createElement("h2");
+  const theDate = document.createElement("p");
   const paragraph1 = document.createElement("p");
   const paragraph2 = document.createElement("p");
   const paragraph3 = document.createElement("p");
@@ -142,8 +136,9 @@ function createFunction(
   const button = document.createElement("span");
 
   // Set up html
-  article.appendChild(artTitle);
-  article.appendChild(artDate);
+
+  article.appendChild(theTitle);
+  article.appendChild(theDate);
   article.appendChild(paragraph1);
   article.appendChild(paragraph2);
   article.appendChild(paragraph3);
@@ -152,7 +147,7 @@ function createFunction(
 
   //   Set up css classes
   article.classList.add("article");
-  artDate.classList.add("date");
+  theDate.classList.add("date");
   buttonPanel.classList.add("article-open");
   button.classList.add("expandButton");
 
@@ -162,7 +157,7 @@ function createFunction(
   });
 
   // add text content
-  artTitle.textContent = title;
+  theTitle.textContent = title;
   paragraph1.textContent = firstParagraph;
   paragraph2.textContent = secondParagraph;
   paragraph3.textContent = thirdParagraph;
@@ -170,4 +165,14 @@ function createFunction(
   return article;
 }
 
-console.log(createFunction());
+console.log(creator());
+
+// adding new data
+const newTitle = "This is a title";
+const newDate = "10/10/10/10/10";
+const newP1 = "this is paragraph one";
+const newP2 = "this is paragraph two";
+const newP3 = "this is paragraph three";
+
+let newDiv = creator(newTitle, newDate, newP1, newP2, newP3);
+articles.appendChild(newDiv);
