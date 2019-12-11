@@ -34,11 +34,33 @@ let menuItems = [
   
 */
 
-function createMenu(item) {
-  item.forEach(arrayItem => {
-    let students = arrayItem["Students"];
-    console.log(students);
+let header = document.querySelector(".header");
+
+function menuCreator(items) {
+  let menu = document.createElement("div");
+  let ul = document.createElement("ul");
+  //   let li = document.createElement("li");
+  let img = document.querySelector(".menu-button");
+
+  // adding class
+  menu.classList.add("menu");
+
+  // appending
+  header.appendChild(menu);
+  menu.appendChild(ul);
+
+  // setting up html
+  items.forEach(item => {
+    let li = document.createElement("li");
+    li.textContent = item;
+    ul.appendChild(li);
   });
+
+  img.addEventListener("click", event => {
+    menu.classList.toggle("menu--open");
+  });
+
+  return menu;
 }
 
-createMenu(menuItems);
+console.log(menuCreator(menuItems));

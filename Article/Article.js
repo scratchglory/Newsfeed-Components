@@ -112,6 +112,48 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function creator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement("div");
+  const theTitle = document.createElement("h2");
+  const theDate = document.createElement("p");
+  const paragraph1 = document.createElement("p");
+  const paragraph2 = document.createElement("p");
+  const paragraph3 = document.createElement("p");
+  //   const buttonPanel = document.createElement("div");
+  const button = document.createElement("span");
+
+  // Set up html
+  article.appendChild(theTitle);
+  article.appendChild(theDate);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  //   article.appendChild(buttonPanel);
+  article.appendChild(button);
+
+  //   Set up css classes
+  article.classList.add("article");
+  theDate.classList.add("date");
+  //   buttonPanel.classList.add("article-open");
+  button.classList.add("expandButton");
+
+  // add event listener
+  button.addEventListener("click", event => {
+    article.classList.toggle("article-open");
+  });
+
+  // add text content
+  theTitle.textContent = title;
+  theDate.textContent = date;
+  paragraph1.textContent = firstParagraph;
+  paragraph2.textContent = secondParagraph;
+  paragraph3.textContent = thirdParagraph;
+  button.textContent = "Click This!!!";
+
+  return article;
+}
+
 const articles = document.querySelector(".articles");
 data.forEach(content => {
   articles.appendChild(
@@ -125,48 +167,6 @@ data.forEach(content => {
   );
 });
 
-function creator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
-  const article = document.createElement("div");
-  const theTitle = document.createElement("h2");
-  const theDate = document.createElement("p");
-  const paragraph1 = document.createElement("p");
-  const paragraph2 = document.createElement("p");
-  const paragraph3 = document.createElement("p");
-  const buttonPanel = document.createElement("div");
-  const button = document.createElement("span");
-
-  // Set up html
-
-  article.appendChild(theTitle);
-  article.appendChild(theDate);
-  article.appendChild(paragraph1);
-  article.appendChild(paragraph2);
-  article.appendChild(paragraph3);
-  article.appendChild(buttonPanel);
-  buttonPanel.appendChild(button);
-
-  //   Set up css classes
-  article.classList.add("article");
-  theDate.classList.add("date");
-  buttonPanel.classList.add("article-open");
-  button.classList.add("expandButton");
-
-  // add event listener
-  button.addEventListener("click", event => {
-    button.classList.toggle("expandButton");
-  });
-
-  // add text content
-  theTitle.textContent = title;
-  paragraph1.textContent = firstParagraph;
-  paragraph2.textContent = secondParagraph;
-  paragraph3.textContent = thirdParagraph;
-
-  return article;
-}
-
-console.log(creator());
-
 // adding new data
 const newTitle = "This is a title";
 const newDate = "10/10/10/10/10";
@@ -176,3 +176,6 @@ const newP3 = "this is paragraph three";
 
 let newDiv = creator(newTitle, newDate, newP1, newP2, newP3);
 articles.appendChild(newDiv);
+
+// stretch
+gsap.to(".header", { rotation: -50, duration: 1 });
