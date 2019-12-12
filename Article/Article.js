@@ -176,6 +176,3 @@ const newP3 = "this is paragraph three";
 
 let newDiv = creator(newTitle, newDate, newP1, newP2, newP3);
 articles.appendChild(newDiv);
-
-// stretch
-gsap.to(".header", { rotation: -50, duration: 1 });
