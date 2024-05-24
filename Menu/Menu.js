@@ -1,12 +1,12 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out"
 ];
 
 /* 
@@ -33,3 +33,44 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+let h1 = document.getElementsByTagName("h1");
+h1[0].style.color = "dodgerblue";
+
+let header = document.querySelector(".header");
+
+function menuCreator(items) {
+  let menu = document.createElement("div");
+  let ul = document.createElement("ul");
+  //   let li = document.createElement("li");
+  let img = document.querySelector(".menu-button");
+
+  // adding class
+  menu.classList.add("menu");
+
+  // appending
+  header.appendChild(menu);
+  menu.appendChild(ul);
+
+  // setting up html
+  items.forEach(item => {
+    let li = document.createElement("li");
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+
+  img.addEventListener("click", event => {
+    menu.classList.toggle("menu--open");
+  });
+
+  return menu;
+}
+
+console.log(menuCreator(menuItems));
+
+// stretch
+gsap.to("h1", { rotation: 360, duration: 1 });
+gsap.from("h1", {
+  opacity: 0,
+  y: 500,
+  duration: 1
+});

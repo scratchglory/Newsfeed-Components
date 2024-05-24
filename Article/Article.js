@@ -3,7 +3,7 @@
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
-    date: 'Nov 5th, 2018',
+    date: "Nov 5th, 2018",
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
         moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
         watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
@@ -23,8 +23,8 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
-    title: 'Javascript and You, ES6',
-    date: 'May 7th, 2019',
+    title: "Javascript and You, ES6",
+    date: "May 7th, 2019",
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
         Hermione spell bezoar Scabbers. Peruvian-Night-Powder werewolf, Dobby pear-tickle half-moon-glasses, Knight-Bus. Padfoot
         snargaluff seeker: Hagrid broomstick mischief managed. Snitch Fluffy rock-cake, 9 ¾ dress robes I must not tell lies. Mudbloods
@@ -43,8 +43,8 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
-    title: 'React vs Angular vs Vue',
-    date: 'June 7th, 2019',
+    title: "React vs Angular vs Vue",
+    date: "June 7th, 2019",
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
         elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet,
@@ -71,8 +71,8 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
-    title: 'Professional Software Development in 2019',
-    date: 'Jan 1st, 2019',
+    title: "Professional Software Development in 2019",
+    date: "Jan 1st, 2019",
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
           hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
           Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
@@ -112,3 +112,67 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function creator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement("div");
+  const theTitle = document.createElement("h2");
+  const theDate = document.createElement("p");
+  const paragraph1 = document.createElement("p");
+  const paragraph2 = document.createElement("p");
+  const paragraph3 = document.createElement("p");
+  //   const buttonPanel = document.createElement("div");
+  const button = document.createElement("span");
+
+  // Set up html
+  article.appendChild(theTitle);
+  article.appendChild(theDate);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  //   article.appendChild(buttonPanel);
+  article.appendChild(button);
+
+  //   Set up css classes
+  article.classList.add("article");
+  theDate.classList.add("date");
+  //   buttonPanel.classList.add("article-open");
+  button.classList.add("expandButton");
+
+  // add event listener
+  button.addEventListener("click", event => {
+    article.classList.toggle("article-open");
+  });
+
+  // add text content
+  theTitle.textContent = title;
+  theDate.textContent = date;
+  paragraph1.textContent = firstParagraph;
+  paragraph2.textContent = secondParagraph;
+  paragraph3.textContent = thirdParagraph;
+  button.textContent = "Click This!!!";
+
+  return article;
+}
+
+const articles = document.querySelector(".articles");
+data.forEach(content => {
+  articles.appendChild(
+    creator(
+      content.title,
+      content.date,
+      content.firstParagraph,
+      content.secondParagraph,
+      content.thirdParagraph
+    )
+  );
+});
+
+// adding new data
+const newTitle = "This is a title";
+const newDate = "10/10/10/10/10";
+const newP1 = "this is paragraph one";
+const newP2 = "this is paragraph two";
+const newP3 = "this is paragraph three";
+
+let newDiv = creator(newTitle, newDate, newP1, newP2, newP3);
+articles.appendChild(newDiv);
